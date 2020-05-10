@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { pluck } from 'rxjs/operators';
 
-interface StarWars {
-  count: number;
-  next: string;
-  previous: any;
-  results: any[];
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get<StarWars>('https://swapi.dev/api/people/')
+      .get('https://swapi.dev/api/people/')
       .pipe(pluck('results'))
       .subscribe((response) => {
         this.characters = response;
